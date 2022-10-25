@@ -1,9 +1,10 @@
-import Header from "./Pages/Shared/Header/Header";
+import { RouterProvider } from "react-router-dom";
+import { routes } from "./Routes/Routes";
 
 function App() {
   return (
     <div>
-      <Header></Header>
+      <RouterProvider router={routes}></RouterProvider>
     </div>
   );
 }
