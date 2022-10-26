@@ -9,7 +9,7 @@ const Courses = () => {
   return (
     <Row className="g-4">
       {courses.map((course) => (
-        <Col key={course.id} lg="4">
+        <Col key={course.id} md="6" xl="4">
           <CourseCard course={course}></CourseCard>
         </Col>
       ))}
