@@ -8,7 +8,7 @@ const Main = () => {
   return (
     <div>
       <Header></Header>
-      <div className="py-5">
+      <div className="bg-light py-5 vh-100">
         <Container>
           <Row>
             <Col lg="3">

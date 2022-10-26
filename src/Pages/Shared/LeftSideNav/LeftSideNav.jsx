@@ -13,7 +13,7 @@ const LeftSideNav = () => {
   }, []);
 
   return (
-    <Nav className="flex-column bg-light p-4 rounded">
+    <Nav className="flex-column gap-2 bg-white p-4 rounded-4">
       {courses.map((course) => (
         <Link to={`course/${course.id}`} key={course.id} className="nav-link">
           {course.name}

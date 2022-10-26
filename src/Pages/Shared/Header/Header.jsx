@@ -6,7 +6,7 @@ import logo from "../../../assets/codingNinja.svg";
 
 const Header = () => {
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="white" expand="lg">
       <Container>
         <Navbar.Brand href="#home">
           <img style={{ height: "40px" }} src={logo} alt="" />
