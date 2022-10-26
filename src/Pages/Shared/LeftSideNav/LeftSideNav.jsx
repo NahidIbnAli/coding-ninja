@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 
 const LeftSideNav = () => {
   const [courses, setCourses] = useState([]);
+  // fetch data for courses name and id
   useEffect(() => {
     fetch("http://localhost:5000/courses")
       .then((res) => res.json())

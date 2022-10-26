@@ -5,8 +5,8 @@ import CourseCard from "../CourseCard/CourseCard";
 
 const Courses = () => {
   const courses = useLoaderData();
-  console.log(courses);
   return (
+    // course card container
     <Row className="g-4">
       {courses.map((course) => (
         <Col key={course.id} md="6" xl="4">
