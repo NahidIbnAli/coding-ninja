@@ -1,19 +1,31 @@
 import React from "react";
-import { Col, Row } from "react-bootstrap";
+import { Col, Row, Container } from "react-bootstrap";
 import { useLoaderData } from "react-router-dom";
 import CourseCard from "../CourseCard/CourseCard";
+import LeftSideNav from "../../Pages/Shared/LeftSideNav/LeftSideNav";
 
 const Courses = () => {
   const courses = useLoaderData();
   return (
     // course card container
-    <Row className="g-4">
-      {courses.map((course) => (
-        <Col key={course.id} md="6" xl="4">
-          <CourseCard course={course}></CourseCard>
-        </Col>
-      ))}
-    </Row>
+    <div className="py-4">
+      <Container>
+        <Row className="g-4">
+          <Col lg="3">
+            <LeftSideNav></LeftSideNav>
+          </Col>
+          <Col lg="9">
+            <Row className="g-4">
+              {courses.map((course) => (
+                <Col key={course.id} md="6" xl="4">
+                  <CourseCard course={course}></CourseCard>
+                </Col>
+              ))}
+            </Row>
+          </Col>
+        </Row>
+      </Container>
+    </div>
   );
 };
 

@@ -1,0 +1,12 @@
+.bg-custom {
+  background-image: url("../../../assets/header.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: center;
+}
+
+@media screen and (min-width: 1140px) {
+  .w-half {
+    width: 50%;
+  }
+}
