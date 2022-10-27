@@ -1,0 +1,13 @@
+@media screen and (min-width: 1140px) {
+  .w-halfPlus {
+    width: 40% !important;
+  }
+}
+
+.text-custom {
+  font-size: 1.1rem !important;
+}
+
+.text-2x {
+  font-size: 1.4rem !important;
+}

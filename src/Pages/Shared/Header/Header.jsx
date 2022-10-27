@@ -19,6 +19,9 @@ const Header = () => {
             <Link to="/" className="nav-link">
               Courses
             </Link>
+            <Link to="/faq" className="nav-link">
+              FAQ
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
