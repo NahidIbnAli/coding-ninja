@@ -3,6 +3,7 @@ import Main from "../layout/Main";
 import Blog from "../Pages/Blog/Blog";
 import Courses from "../Pages/Courses/Courses";
 import Faq from "../Pages/Faq/Faq";
+import NotFound from "../Pages/NotFound/NotFound";
 import CourseDetail from "../Pages/Shared/CourseDetail/CourseDetail";
 
 export const routes = createBrowserRouter([
@@ -30,5 +31,9 @@ export const routes = createBrowserRouter([
         element: <Blog></Blog>,
       },
     ],
+  },
+  {
+    path: "*",
+    element: <NotFound></NotFound>,
   },
 ]);
