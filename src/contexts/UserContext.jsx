@@ -7,6 +7,7 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signInWithPopup,
+  signOut,
   updateProfile,
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
@@ -43,6 +44,9 @@ const UserContext = ({ children }) => {
   const signInGithub = () => {
     return signInWithPopup(auth, githubProvider);
   };
+  const signOutUser = () => {
+    return signOut(auth);
+  };
   const updateUserProfile = (name, image) => {
     return updateProfile(auth.currentUser, {
       displayName: name,
@@ -63,6 +67,7 @@ const UserContext = ({ children }) => {
     signIn,
     signInGoogle,
     signInGithub,
+    signOutUser,
     loading,
     toggleDark,
     handleModeToggle,

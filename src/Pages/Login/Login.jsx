@@ -7,9 +7,11 @@ import { AuthContext } from "../../contexts/UserContext";
 import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { BsGithub } from "react-icons/bs";
+import { useState } from "react";
 
 const Login = () => {
   const { signIn, signInGoogle, signInGithub } = useContext(AuthContext);
+  const [errorMessage, setErrorMessage] = useState(false);
   //   const location = useLocation();
   //   const navigate = useNavigate();
   //   const from = location.state?.from?.pathname || "/";
@@ -23,9 +25,11 @@ const Login = () => {
       .then((result) => {
         form.reset();
         // navigate(from, { replace: true });
-        console.log(result.user);
+        setErrorMessage(false);
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        setErrorMessage(error.message);
+      });
   };
 
   const handleSignInWithGoogle = () => {
@@ -71,6 +75,8 @@ const Login = () => {
                 required
               />
             </Form.Group>
+            {/* display error message */}
+            {errorMessage && <p className="text-danger">{errorMessage}</p>}
             <Button
               className="w-100 py-3 rounded-pill my-4 fw-semibold"
               type="submit"

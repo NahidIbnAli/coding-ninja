@@ -10,13 +10,21 @@ import { AuthContext } from "../../../contexts/UserContext";
 import { Image, Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 
 const Header = () => {
-  const { toggleDark, handleModeToggle, user } = useContext(AuthContext);
+  const { toggleDark, handleModeToggle, user, signOutUser } =
+    useContext(AuthContext);
 
+  // tooltip content function
   const renderTooltip = (props) => (
     <Tooltip id="button-tooltip" {...props}>
       {user?.displayName}
     </Tooltip>
   );
+
+  const handleSignOut = () => {
+    signOutUser()
+      .then(() => console.log("Sign-out Successful"))
+      .catch((error) => console.error(error));
+  };
 
   return (
     <Navbar bg="white" expand="lg" className="sticky-top">
@@ -48,7 +56,7 @@ const Header = () => {
                 <BsSun className="fs-5"></BsSun>
               )}
             </button>
-            {user?.photoURL ? (
+            {user?.uid ? (
               <>
                 <OverlayTrigger
                   placement="right"
@@ -59,10 +67,13 @@ const Header = () => {
                     <Image
                       style={{ height: "40px" }}
                       roundedCircle
-                      src={user.photoURL}
+                      src={user?.photoURL}
                     ></Image>
                   </Link>
                 </OverlayTrigger>
+                <Button onClick={handleSignOut} className="rounded-pill">
+                  Sign Out
+                </Button>
               </>
             ) : (
               <Link to="/login" className="nav-link p-0">
