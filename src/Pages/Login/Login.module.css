@@ -1,0 +1,10 @@
+.cardd {
+  max-width: 500px;
+}
+.divider {
+  display: grid;
+  grid-template-columns: 1fr 50px 1fr;
+}
+.buttonHover:hover {
+  border-color: #444 !important;
+}

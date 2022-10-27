@@ -5,14 +5,12 @@ import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/codingNinja.svg";
 import { BsMoon, BsSun } from "react-icons/bs";
+import { useContext } from "react";
+import { AuthContext } from "../../../contexts/UserContext";
+import { Image } from "react-bootstrap";
 
 const Header = () => {
-  const [toggleDark, setToggleDark] = useState(false);
-  // dark mode toggle handler
-  const handleModeToggle = (event) => {
-    event.preventDefault();
-    setToggleDark(!toggleDark);
-  };
+  const { toggleDark, handleModeToggle, user } = useContext(AuthContext);
 
   return (
     <Navbar bg="white" expand="lg" className="sticky-top">
@@ -23,20 +21,20 @@ const Header = () => {
         </Link>
         <Navbar.Toggle aria-controls="navbar-nav" />
         <Navbar.Collapse id="navbar-nav">
-          <Nav className="ms-auto gap-3">
-            <Link to="/" className="nav-link">
+          <Nav className="ms-auto align-items-center gap-4">
+            <Link to="/" className="nav-link p-0">
               Courses
             </Link>
-            <Link to="/faq" className="nav-link">
+            <Link to="/faq" className="nav-link p-0">
               FAQ
             </Link>
-            <Link to="/blog" className="nav-link">
+            <Link to="/blog" className="nav-link p-0">
               Blog
             </Link>
             {/* dark mode toggle button */}
             <button
               onClick={handleModeToggle}
-              className="nav-link d-flex align-items-center gap-2 btn border-0"
+              className="nav-link p-0 btn border-0"
             >
               {toggleDark ? (
                 <BsMoon className="fs-5"></BsMoon>
@@ -44,6 +42,21 @@ const Header = () => {
                 <BsSun className="fs-5"></BsSun>
               )}
             </button>
+            {user?.photoURL ? (
+              <Link className="nav-link p-0">
+                <Image
+                  style={{ height: "40px" }}
+                  roundedCircle
+                  src={user.photoURL}
+                ></Image>
+              </Link>
+            ) : (
+              <Link to="/login" className="nav-link p-0">
+                <button className="btn btn-primary px-4 rounded-pill">
+                  Login
+                </button>
+              </Link>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>
