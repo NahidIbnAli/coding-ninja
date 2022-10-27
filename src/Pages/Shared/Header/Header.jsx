@@ -7,10 +7,16 @@ import logo from "../../../assets/codingNinja.svg";
 import { BsMoon, BsSun } from "react-icons/bs";
 import { useContext } from "react";
 import { AuthContext } from "../../../contexts/UserContext";
-import { Image } from "react-bootstrap";
+import { Image, Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 
 const Header = () => {
   const { toggleDark, handleModeToggle, user } = useContext(AuthContext);
+
+  const renderTooltip = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+      {user?.displayName}
+    </Tooltip>
+  );
 
   return (
     <Navbar bg="white" expand="lg" className="sticky-top">
@@ -43,13 +49,21 @@ const Header = () => {
               )}
             </button>
             {user?.photoURL ? (
-              <Link className="nav-link p-0">
-                <Image
-                  style={{ height: "40px" }}
-                  roundedCircle
-                  src={user.photoURL}
-                ></Image>
-              </Link>
+              <>
+                <OverlayTrigger
+                  placement="right"
+                  delay={{ show: 200, hide: 400 }}
+                  overlay={renderTooltip}
+                >
+                  <Link className="nav-link p-0">
+                    <Image
+                      style={{ height: "40px" }}
+                      roundedCircle
+                      src={user.photoURL}
+                    ></Image>
+                  </Link>
+                </OverlayTrigger>
+              </>
             ) : (
               <Link to="/login" className="nav-link p-0">
                 <button className="btn btn-primary px-4 rounded-pill">
