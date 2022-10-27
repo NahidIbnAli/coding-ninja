@@ -22,6 +22,9 @@ const Header = () => {
             <Link to="/faq" className="nav-link">
               FAQ
             </Link>
+            <Link to="/blog" className="nav-link">
+              Blog
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

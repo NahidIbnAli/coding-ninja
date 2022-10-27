@@ -1,0 +1,4 @@
+.gridRow {
+  display: grid;
+  gap: 25px;
+}
