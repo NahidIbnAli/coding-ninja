@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { FaCheck } from "react-icons/fa";
 import { AiFillStar } from "react-icons/ai";
 import { BsCloudDownload } from "react-icons/bs";
@@ -40,7 +40,7 @@ const CourseDetail = () => {
               ))}
             </div>
             {/* course features */}
-            <div className="pb-1">
+            <div className="pb-2">
               <h3 className="mb-3">What You will Learn...</h3>
               <ul className="list-unstyled">
                 {features.map((feature) => (
@@ -50,6 +50,9 @@ const CourseDetail = () => {
                 ))}
               </ul>
             </div>
+            <Link to={`/checkout/${id}`}>
+              <Button className="mb-3">Get premium access</Button>
+            </Link>
             <hr />
             <div className="d-flex align-items-center justify-content-between">
               <div className="d-flex gap-2 align-items-center">

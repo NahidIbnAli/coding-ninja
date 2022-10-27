@@ -3,14 +3,14 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
 import signUpStyle from "./SignUp.module.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/UserContext";
 
 const SignUp = () => {
   const { signUp, updateUserProfile } = useContext(AuthContext);
-  //   const location = useLocation();
-  //   const navigate = useNavigate();
-  //   const from = location.state?.from?.pathname || "/";
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
 
   const handleSignUp = (event) => {
     event.preventDefault();
@@ -23,7 +23,7 @@ const SignUp = () => {
       .then((result) => {
         form.reset();
         updateUserProfile(name, photoUrl);
-        // navigate(from, { replace: true });
+        navigate(from, { replace: true });
         console.log(result.user);
       })
       .catch((error) => console.error(error));

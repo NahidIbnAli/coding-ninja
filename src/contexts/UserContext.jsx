@@ -31,11 +31,11 @@ const UserContext = ({ children }) => {
 
   // firebase authentication
   const signUp = (email, password) => {
-    // setLoading(true);
+    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
   const signIn = (email, password) => {
-    // setLoading(true);
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
   const signInGoogle = () => {
@@ -45,6 +45,7 @@ const UserContext = ({ children }) => {
     return signInWithPopup(auth, githubProvider);
   };
   const signOutUser = () => {
+    setLoading(false);
     return signOut(auth);
   };
   const updateUserProfile = (name, image) => {
@@ -57,6 +58,7 @@ const UserContext = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      setLoading(false);
     });
     return () => unsubscribe();
   }, []);

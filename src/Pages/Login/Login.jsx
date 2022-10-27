@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
 import loginStyle from "./Login.module.css";
 import { AuthContext } from "../../contexts/UserContext";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { BsGithub } from "react-icons/bs";
 import { useState } from "react";
@@ -12,9 +12,9 @@ import { useState } from "react";
 const Login = () => {
   const { signIn, signInGoogle, signInGithub } = useContext(AuthContext);
   const [errorMessage, setErrorMessage] = useState(false);
-  //   const location = useLocation();
-  //   const navigate = useNavigate();
-  //   const from = location.state?.from?.pathname || "/";
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -24,7 +24,7 @@ const Login = () => {
     signIn(email, password)
       .then((result) => {
         form.reset();
-        // navigate(from, { replace: true });
+        navigate(from, { replace: true });
         setErrorMessage(false);
       })
       .catch((error) => {
@@ -35,7 +35,7 @@ const Login = () => {
   const handleSignInWithGoogle = () => {
     signInGoogle()
       .then((result) => {
-        // navigate(from, { replace: true });
+        navigate(from, { replace: true });
         console.log(result.user);
       })
       .catch((error) => console.error(error));
@@ -43,7 +43,7 @@ const Login = () => {
   const handleSignInWithGithub = () => {
     signInGithub()
       .then((result) => {
-        // navigate(from, { replace: true });
+        navigate(from, { replace: true });
         console.log(result.user);
       })
       .catch((error) => console.error(error));
