@@ -7,6 +7,9 @@ import { AiFillStar } from "react-icons/ai";
 import { BsCloudDownload } from "react-icons/bs";
 import { Container } from "react-bootstrap";
 import "./CourseDetail.css";
+import Pdf from "react-to-pdf";
+
+const ref = React.createRef();
 
 const CourseDetail = () => {
   const courseDetail = useLoaderData();
@@ -19,9 +22,13 @@ const CourseDetail = () => {
       <div className="bg-custom py-5 text-center text-light">
         <h2 className="display-5 fw-semibold">{name}</h2>
         <p className="lead">{title}</p>
-        <Button variant="outline-light">
-          <BsCloudDownload></BsCloudDownload> Course Module
-        </Button>
+        <Pdf targetRef={ref} filename="code-example.pdf">
+          {({ toPdf }) => (
+            <Button onClick={toPdf} variant="outline-light">
+              <BsCloudDownload></BsCloudDownload> Course Module
+            </Button>
+          )}
+        </Pdf>
       </div>
       {/* course detail body */}
       <Container className="w-half py-5">
@@ -30,25 +37,27 @@ const CourseDetail = () => {
             <Card.Img src={image} className="rounded-3" />
           </div>
           <Card.Body className="p-4 pt-0">
-            <Card.Title className="fs-3 fw-bold mt-0 mb-3">{name}</Card.Title>
-            {/* course description */}
-            <div>
-              {description.map((d) => (
-                <p className="mb-4" key={d}>
-                  {d}
-                </p>
-              ))}
-            </div>
-            {/* course features */}
-            <div className="pb-2">
-              <h3 className="mb-3">What You will Learn...</h3>
-              <ul className="list-unstyled">
-                {features.map((feature) => (
-                  <li key={feature} className="mb-3">
-                    <FaCheck className="me-1"></FaCheck> {feature}
-                  </li>
+            <div ref={ref}>
+              <Card.Title className="fs-3 fw-bold mt-0 mb-3">{name}</Card.Title>
+              {/* course description */}
+              <div>
+                {description.map((d) => (
+                  <p className="mb-4" key={d}>
+                    {d}
+                  </p>
                 ))}
-              </ul>
+              </div>
+              {/* course features */}
+              <div className="pb-2">
+                <h3 className="mb-3">What You will Learn...</h3>
+                <ul className="list-unstyled">
+                  {features.map((feature) => (
+                    <li key={feature} className="mb-3">
+                      <FaCheck className="me-1"></FaCheck> {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
             <Link to={`/checkout/${id}`}>
               <Button className="mb-3">Get premium access</Button>
