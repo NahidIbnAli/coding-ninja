@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import { Link } from "react-router-dom";
 import cardStyle from "./CourseCard.module.css";
 
 const CourseCard = ({ course }) => {
@@ -16,7 +17,9 @@ const CourseCard = ({ course }) => {
           <Card.Text>{title}</Card.Text>
         </div>
         <div className="d-flex justify-content-between align-items-center pt-5">
-          <Button variant="primary">Add to Cart</Button>
+          <Link to={`course/${id}`}>
+            <Button variant="primary">Add to Cart</Button>
+          </Link>
           <Card.Text className="fw-semibold text-primary">${price}</Card.Text>
         </div>
       </Card.Body>

@@ -17,13 +17,14 @@ export const routes = createBrowserRouter([
     children: [
       {
         path: "/",
-        loader: () => fetch("http://localhost:5000/courses/all"),
+        loader: () =>
+          fetch("https://coding-ninja-server.vercel.app/courses/all"),
         element: <Courses></Courses>,
       },
       {
         path: "course/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/course/${params.id}`),
+          fetch(`https://coding-ninja-server.vercel.app/course/${params.id}`),
         element: <CourseDetail></CourseDetail>,
       },
       {
@@ -45,7 +46,7 @@ export const routes = createBrowserRouter([
       {
         path: "checkout/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/course/${params.id}`),
+          fetch(`https://coding-ninja-server.vercel.app/course/${params.id}`),
         element: (
           <PrivateRoutes>
             <Checkout></Checkout>

@@ -59,7 +59,7 @@ const Header = () => {
             {user?.uid ? (
               <>
                 <OverlayTrigger
-                  placement="right"
+                  placement="bottom"
                   delay={{ show: 200, hide: 400 }}
                   overlay={renderTooltip}
                 >

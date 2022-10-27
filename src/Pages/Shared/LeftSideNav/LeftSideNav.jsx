@@ -8,7 +8,7 @@ const LeftSideNav = () => {
   const [courses, setCourses] = useState([]);
   // fetch data for courses name and id
   useEffect(() => {
-    fetch("http://localhost:5000/courses")
+    fetch("https://coding-ninja-server.vercel.app/courses")
       .then((res) => res.json())
       .then((data) => setCourses(data));
   }, []);
