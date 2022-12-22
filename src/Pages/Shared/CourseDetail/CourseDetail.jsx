@@ -8,10 +8,13 @@ import { BsCloudDownload } from "react-icons/bs";
 import { Container } from "react-bootstrap";
 import "./CourseDetail.css";
 import Pdf from "react-to-pdf";
+import { useContext } from "react";
+import { AuthContext } from "../../../contexts/UserContext";
 
 const ref = React.createRef();
 
 const CourseDetail = () => {
+  const { theme } = useContext(AuthContext);
   const courseDetail = useLoaderData();
   const { id, name, title, image, description, price, rating, features } =
     courseDetail;
@@ -32,7 +35,7 @@ const CourseDetail = () => {
       </div>
       {/* course detail body */}
       <Container className="w-half py-5">
-        <Card className="border-0">
+        <Card className={`border-0 ${theme === "dark" && "darkBg"}`}>
           <div className="p-4">
             <Card.Img src={image} className="rounded-3" />
           </div>
@@ -60,7 +63,12 @@ const CourseDetail = () => {
               </div>
             </div>
             <Link to={`/checkout/${id}`}>
-              <Button className="mb-3">Get premium access</Button>
+              <Button
+                // variant={theme === "dark" && }
+                className={`mb-3 ${theme === "dark" && "bgP border-0"}`}
+              >
+                Get premium access
+              </Button>
             </Link>
             <hr />
             <div className="d-flex align-items-center justify-content-between">
@@ -71,7 +79,13 @@ const CourseDetail = () => {
                 </p>
               </div>
               <div>
-                <p className="m-0 fw-bold text-primary lead">${price}</p>
+                <p
+                  className={`m-0 fw-bold fs-5 ${
+                    theme === "dark" ? "textP" : "text-primary"
+                  }`}
+                >
+                  ${price}
+                </p>
               </div>
             </div>
           </Card.Body>

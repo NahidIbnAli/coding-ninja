@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -11,7 +11,7 @@ import { Image, Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 import LeftSideNav from "../LeftSideNav/LeftSideNav";
 
 const Header = () => {
-  const { toggleDark, handleModeToggle, user, signOutUser } =
+  const { theme, handleToggleTheme, user, signOutUser } =
     useContext(AuthContext);
 
   // tooltip content function
@@ -28,30 +28,37 @@ const Header = () => {
   };
 
   return (
-    <Navbar bg="white" expand="lg" className="sticky-top">
+    <Navbar
+      bg={theme === "light" && "white"}
+      expand="lg"
+      variant={theme === "dark" ? "dark" : "light"}
+      className={`sticky-top ${theme === "dark" && "darkBg"}`}
+    >
       <Container>
-        <Link to="/" className="navbar-brand">
+        <Link to="/" className={`navbar-brand`}>
           <img style={{ height: "40px" }} src={logo} alt="" />
           Coding Ninja
         </Link>
         <Navbar.Toggle aria-controls="navbar-nav" />
         <Navbar.Collapse id="navbar-nav">
           <Nav className="ms-auto align-items-center gap-4">
-            <Link to="/" className="nav-link p-0">
+            <Link to="/" className={`nav-link p-0`}>
               Courses
             </Link>
-            <Link to="/faq" className="nav-link p-0">
+            <Link to="/faq" className={`nav-link p-0`}>
               FAQ
             </Link>
-            <Link to="/blog" className="nav-link p-0">
+            <Link to="/blog" className={`nav-link p-0`}>
               Blog
             </Link>
             {/* dark mode toggle button */}
             <button
-              onClick={handleModeToggle}
-              className="nav-link p-0 btn border-0"
+              onClick={handleToggleTheme}
+              className={`nav-link p-0 btn border-0 ${
+                theme === "dark" && "darkText"
+              }`}
             >
-              {toggleDark ? (
+              {theme === "dark" ? (
                 <BsMoon className="fs-5"></BsMoon>
               ) : (
                 <BsSun className="fs-5"></BsSun>
@@ -68,17 +75,29 @@ const Header = () => {
                     <Image
                       style={{ height: "40px" }}
                       roundedCircle
-                      src={user?.photoURL}
+                      src={
+                        user?.photoURL || "https://i.ibb.co/RzLyywb/user.png"
+                      }
                     ></Image>
                   </Link>
                 </OverlayTrigger>
-                <Button onClick={handleSignOut} className="rounded-pill">
+                <Button
+                  onClick={handleSignOut}
+                  variant={theme === "dark" ? "" : "primary"}
+                  className={`rounded-pill ${
+                    theme === "dark" && "bgP text-light"
+                  }`}
+                >
                   Sign Out
                 </Button>
               </>
             ) : (
               <Link to="/login" className="nav-link p-0">
-                <button className="btn btn-primary px-4 rounded-pill">
+                <button
+                  className={`btn px-4 rounded-pill ${
+                    theme === "dark" ? "bgP text-light" : "btn-primary"
+                  }`}
+                >
                   Login
                 </button>
               </Link>

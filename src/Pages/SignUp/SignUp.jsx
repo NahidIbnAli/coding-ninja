@@ -7,7 +7,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/UserContext";
 
 const SignUp = () => {
-  const { signUp, updateUserProfile } = useContext(AuthContext);
+  const { signUp, updateUserProfile, theme } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
@@ -31,7 +31,11 @@ const SignUp = () => {
 
   return (
     <div className="pt-5 px-4">
-      <Card className={`${signUpStyle.cardd} mx-auto rounded-0`}>
+      <Card
+        className={`${signUpStyle.cardd} mx-auto rounded-0 ${
+          theme === "dark" && "darkBg"
+        }`}
+      >
         <Card.Body className="p-lg-5">
           <h3 className="fs-2  text-center mb-4">Sign Up</h3>
           <Form onSubmit={handleSignUp}>
@@ -76,7 +80,9 @@ const SignUp = () => {
               />
             </Form.Group>
             <Button
-              className="w-100 py-3 rounded-pill my-4 fw-semibold"
+              className={`w-100 py-3 rounded-pill my-4 fw-semibold ${
+                theme === "dark" && "bgP border-0"
+              }`}
               type="submit"
             >
               Sign Up
@@ -84,7 +90,10 @@ const SignUp = () => {
           </Form>
           <p className="text-center">
             Already have an account?{" "}
-            <Link to="/login" className="text-decoration-none">
+            <Link
+              to="/login"
+              className={`text-decoration-none ${theme === "dark" && "textP"}`}
+            >
               Login
             </Link>
           </p>

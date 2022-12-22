@@ -10,7 +10,7 @@ import { BsGithub } from "react-icons/bs";
 import { useState } from "react";
 
 const Login = () => {
-  const { signIn, signInGoogle, signInGithub } = useContext(AuthContext);
+  const { signIn, signInGoogle, signInGithub, theme } = useContext(AuthContext);
   const [errorMessage, setErrorMessage] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
@@ -51,7 +51,11 @@ const Login = () => {
 
   return (
     <div className="pt-5 px-4">
-      <Card className={`${loginStyle.cardd} mx-auto rounded-0`}>
+      <Card
+        className={`${loginStyle.cardd} mx-auto rounded-0 ${
+          theme === "dark" ? "darkBg" : ""
+        }`}
+      >
         <Card.Body className="p-lg-5">
           <h3 className="fs-2  text-center mb-4">Login</h3>
           <Form onSubmit={handleLogin}>
@@ -78,7 +82,9 @@ const Login = () => {
             {/* display error message */}
             {errorMessage && <p className="text-danger">{errorMessage}</p>}
             <Button
-              className="w-100 py-3 rounded-pill my-4 fw-semibold"
+              className={`w-100 py-3 rounded-pill my-4 fw-semibold ${
+                theme === "dark" && "bgP border-0"
+              }`}
               type="submit"
             >
               Log in
@@ -95,19 +101,26 @@ const Login = () => {
           </div>
           <button
             onClick={handleSignInWithGoogle}
-            className={`btn border w-100 py-3 rounded-pill fw-semibold mb-4 ${loginStyle.buttonHover}`}
+            className={`btn border w-100 py-3 rounded-pill fw-semibold mb-4 ${
+              loginStyle.buttonHover
+            } ${theme === "dark" && "darkText"}`}
           >
             <FcGoogle className="fs-3 me-1"></FcGoogle> Continue With Google
           </button>
           <button
             onClick={handleSignInWithGithub}
-            className={`btn border w-100 py-3 rounded-pill fw-semibold ${loginStyle.buttonHover}`}
+            className={`btn border w-100 py-3 rounded-pill fw-semibold ${
+              loginStyle.buttonHover
+            } ${theme === "dark" && "darkText"}`}
           >
             <BsGithub className="fs-4 me-1"></BsGithub> Continue With Github
           </button>
           <p className="text-center pt-5">
             Need an account?{" "}
-            <Link to="/signup" className="text-decoration-none">
+            <Link
+              to="/signup"
+              className={`text-decoration-none ${theme === "dark" && "textP"}`}
+            >
               Sign Up
             </Link>
           </p>

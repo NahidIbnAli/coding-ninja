@@ -1,13 +1,20 @@
 import React from "react";
+import { useContext } from "react";
 import { Container } from "react-bootstrap";
+import { AuthContext } from "../../contexts/UserContext";
 import "./Blog.css";
 
 const Blog = () => {
+  const { theme } = useContext(AuthContext);
   return (
     <div className="py-5">
       <Container className="w-halfPlus">
         <div className="gridRow">
-          <div className="p-4 border rounded-4">
+          <div
+            className={`p-4 rounded-4 ${
+              theme === "dark" ? "darkBg border-0" : "border"
+            }`}
+          >
             <h4>What is CORS?</h4>
             <p>
               Cross-Origin Resource Sharing (CORS) is an HTTP-based security
@@ -21,7 +28,11 @@ const Blog = () => {
               others.
             </p>
           </div>
-          <div className="p-4 border rounded-4">
+          <div
+            className={`p-4 border rounded-4 ${
+              theme === "dark" ? "darkBg border-0" : "border"
+            }`}
+          >
             <h4>
               Why are you using Firebase? What other options do you have to
               implement authentication?
@@ -39,7 +50,11 @@ const Blog = () => {
               and JSON web token.
             </p>
           </div>
-          <div className="p-4 border rounded-4">
+          <div
+            className={`p-4 border rounded-4 ${
+              theme === "dark" ? "darkBg border-0" : "border"
+            }`}
+          >
             <h4>How does the private route work?</h4>
             <p>
               The react private route component renders child components
@@ -48,7 +63,11 @@ const Blog = () => {
               location state property.
             </p>
           </div>
-          <div className="p-4 border rounded-4">
+          <div
+            className={`p-4 border rounded-4 ${
+              theme === "dark" ? "darkBg border-0" : "border"
+            }`}
+          >
             <h4>What is Node? How does Node work?</h4>
             <p>
               Node.js is an open source server environment. It is a used as

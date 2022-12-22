@@ -18,12 +18,17 @@ const auth = getAuth(app);
 const UserContext = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [toggleDark, setToggleDark] = useState(false);
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
   // dark mode toggle handler
-  const handleModeToggle = () => {
-    setToggleDark(!toggleDark);
+  const handleToggleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
   };
+
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+    document.body.className = theme;
+  }, [theme]);
 
   //   auth providers
   const googleProvider = new GoogleAuthProvider();
@@ -71,8 +76,8 @@ const UserContext = ({ children }) => {
     signInGithub,
     signOutUser,
     loading,
-    toggleDark,
-    handleModeToggle,
+    theme,
+    handleToggleTheme,
     updateUserProfile,
   };
 
