@@ -8,10 +8,10 @@ const Courses = () => {
   const courses = useLoaderData();
   return (
     // course card container
-    <div className="py-4">
+    <div className="pt-4 pb-5">
       <Container>
         <Row className="g-4">
-          <Col lg="3">
+          <Col className="d-none d-lg-block" lg="3">
             <LeftSideNav></LeftSideNav>
           </Col>
           <Col lg="9">

@@ -8,6 +8,7 @@ import { BsMoon, BsSun } from "react-icons/bs";
 import { useContext } from "react";
 import { AuthContext } from "../../../contexts/UserContext";
 import { Image, Button, OverlayTrigger, Tooltip } from "react-bootstrap";
+import LeftSideNav from "../LeftSideNav/LeftSideNav";
 
 const Header = () => {
   const { toggleDark, handleModeToggle, user, signOutUser } =
@@ -83,6 +84,9 @@ const Header = () => {
               </Link>
             )}
           </Nav>
+          <div className="d-lg-none text-center">
+            <LeftSideNav></LeftSideNav>
+          </div>
         </Navbar.Collapse>
       </Container>
     </Navbar>
